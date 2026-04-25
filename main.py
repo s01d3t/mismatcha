@@ -5,8 +5,9 @@ def _build_err_msg(
     _path: str | None = None,
     _index: int | None = None,
 ) -> str:
-    exp_msg = str(expected)[:50] + "... " if len(str(expected)) > 50 else str(expected)
-    act_msg = str(actual)[:50] + "... " if len(str(actual)) > 50 else str(actual)
+    exp_msg, act_msg = str(expected), str(actual)
+    exp_msg = exp_msg[:50] + "... " if len(exp_msg) > 50 else exp_msg
+    act_msg = act_msg[:50] + "... " if len(act_msg) > 50 else act_msg
 
     exp = f"Expected: {exp_msg} ({type(expected).__name__})"
     act = f"Actual: {act_msg} ({type(actual).__name__})"
