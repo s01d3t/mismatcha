@@ -13,6 +13,9 @@ Usage:
 ```
 Call:
 
+from mismatcha import compare
+
+
 d1 = {
     "user": {
         "id": 512341,
