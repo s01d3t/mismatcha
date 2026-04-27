@@ -11,8 +11,6 @@ It recursively walks through both structures and reports any mismatches found, s
 Usage:
 
 ```
-Call:
-
 from mismatcha import compare
 
 
