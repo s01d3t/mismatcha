@@ -62,7 +62,7 @@ Comparison rules:
   (extra keys in the `actual` will be ignored)
 - `list`s are compared by index (order matters)
 - `int` and `float` are treated as compatible numeric types
-- Anything other than `dict`/`list` will be compared as is.
+- Anything other than `dict`/`list` will be compared as is
 
 ---
 Install: `pip install mismatcha`
