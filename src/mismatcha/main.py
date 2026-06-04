@@ -30,17 +30,17 @@ def _handle_dict(expected, actual, ignore, _path):
 
         yield from _iterate(expected[key], actual[key], ignore, curr_path)
 
-
 def _handle_list(expected, actual, ignore, _path):
     if len(expected) != len(actual):
         yield _build_err_msg("List length mismatch", len(expected), len(actual), _path)
         return
 
-    for _index, (exp_value, act_value) in enumerate(zip(expected, actual)):
-        yield from _iterate(exp_value, act_value, ignore, _path, _index)
+    for i, (exp_value, act_value) in enumerate(zip(expected, actual)):
+        curr_path = f"{_path}[{i}]" if _path else f"[{i}]"
+        yield from _iterate(exp_value, act_value, ignore, curr_path)
 
 
-def _iterate(expected, actual, ignore, _path=None, _index=None):
+def _iterate(expected, actual, ignore, _path=None):
     is_both_digits = all(isinstance(x, (int, float)) for x in (expected, actual))
     if type(expected) is not type(actual) and not is_both_digits:
         yield _build_err_msg("Type mismatch", expected, actual, _path)
@@ -53,7 +53,7 @@ def _iterate(expected, actual, ignore, _path=None, _index=None):
             yield from _handle_list(expected, actual, ignore, _path)
         case _:
             if expected != actual:
-                yield _build_err_msg("Value mismatch", expected, actual, _path, _index)
+                yield _build_err_msg("Value mismatch", expected, actual, _path)
 
 
 def compare(
